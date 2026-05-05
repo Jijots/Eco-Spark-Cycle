@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    button:active,
+    a:active {
+        transform: scale(0.97);
+    }
+}
+
+/* ─── Keyframe animations ──────────────────────────────────────────────────── */
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatY {
+    0%, 100% { transform: translateY(0px)   rotate(var(--icon-rotate, 0deg)); }
+    50%       { transform: translateY(-10px) rotate(var(--icon-rotate, 0deg)); }
+}
+
+@keyframes pulseRing {
+    0%   { transform: scale(1);    opacity: 0.6; }
+    100% { transform: scale(1.55); opacity: 0; }
+}
+
+@keyframes popIn {
+    0%   { transform: scale(0.7); opacity: 0; }
+    70%  { transform: scale(1.1); }
+    100% { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position:  400px 0; }
+}
+
+@keyframes navBounce {
+    0%, 100% { transform: translateY(0); }
+    40%       { transform: translateY(-5px); }
+    70%       { transform: translateY(-2px); }
+}
+
+/* ─── Utility classes ──────────────────────────────────────────────────────── */
+
+@layer utilities {
+    .shadow-card {
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .shadow-float {
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 8px 24px;
+    }
+    .border-shadow {
+        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08);
+    }
+
+    .animate-fade-up {
+        animation: fadeUp 0.45s ease both;
+    }
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease both;
+    }
+    .animate-slide-down {
+        animation: slideDown 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .animate-pop-in {
+        animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .animate-nav-bounce {
+        animation: navBounce 0.35s ease both;
+    }
+
+    /* Shimmer skeleton */
+    .skeleton {
+        background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+        background-size: 400px 100%;
+        animation: shimmer 1.4s ease infinite;
+        border-radius: 12px;
+    }
+
+    /* Card hover lift */
+    .card-hover {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Float animation helpers */
+    .float-icon {
+        animation: floatY var(--float-duration, 4s) ease-in-out var(--float-delay, 0s) infinite;
+    }
+}
